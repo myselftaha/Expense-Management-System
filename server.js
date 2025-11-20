@@ -10,27 +10,29 @@ dotenv.config();
 
 connectDb();
 
- 
 const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
 
+// Routes
 app.use('/users', require('./routes/userRoute'));
-
-
 app.use('/transections', require('./routes/transectionRoutes'));
 
+// Static files
 app.use(express.static(path.join(__dirname, './client/build')));
 
-app.get('*', function (req, res) {
+// --- FIX IS HERE ---
+// Changed '*' to regex /(.*)/ to fix the "Missing parameter name" crash
+app.get(/(.*)/, function (req, res) {
     res.sendFile(path.join(__dirname, './client/build/index.html'));
 });
 
-const PORT = 8080 || process.env.PORT;
-
+// --- PORT LOGIC FIX ---
+// process.env.PORT must come first for Vercel deployment
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
