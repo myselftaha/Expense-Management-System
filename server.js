@@ -17,17 +17,18 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-// 1. API Routes FIRST
 app.use('/users', require('./routes/userRoute'));
 app.use('/transections', require('./routes/transectionRoutes'));
 
-// 2. Static Files SECOND
+// Static files
 app.use(express.static(path.join(__dirname, './client/build')));
 
-// 3. The Catch-All Route LAST
-app.get('*', function (req, res) {
+// --- FIX IS HERE ---
+// Changed '*' to regex /(.*)/ to fix the "Missing parameter name" crash
+app.get(/(.*)/, function (req, res) {
     res.sendFile(path.join(__dirname, './client/build/index.html'));
 });
+
 // --- PORT LOGIC FIX ---
 // process.env.PORT must come first for Vercel deployment
 const PORT = process.env.PORT || 8080;
