@@ -1,25 +1,27 @@
 {
-  "name": "Expanse-Management-System",
+  "name": "daily-expencess",
   "version": "1.0.0",
-  "description": "expanse tracker app",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm start\" \"npm run client\" "
+    "dev": "concurrently \"npm start \" \"npm run client\" "
   },
   "keywords": [],
-  "author": "Techinfoyt",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
+    "@ant-design/icons": "^5.6.1",
     "colors": "^1.4.0",
-    "concurrently": "^7.5.0",
+    "concurrently": "^9.2.1",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "moment": "^2.29.4",
-    "mongoose": "^6.6.5",
-    "morgan": "^1.10.0"
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "moment": "^2.30.1",
+    "mongoose": "^8.20.0",
+    "morgan": "^1.10.1",
+    "nodemon": "^3.1.11"
   }
 }
